@@ -60,7 +60,6 @@ class Input(CoreLayer):
 
         Returns:
             Nothing
-
     '''
     def initialize_input_layer(self):
         from tflearn.layers.core import input_data
