@@ -2,7 +2,7 @@
 '''
     The root of the TF-learn Object Model
 '''
-class TfLearnObj:
+class TfLearnObj(object):
     '''
         Constructs the Root TF-Learn Object.
     '''

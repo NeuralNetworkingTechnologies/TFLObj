@@ -1,39 +1,40 @@
 
+from .core import CoreLayer
+
 '''
-    A fully connected layer.
+    A fully connected highway network layer
 '''
-class FullyConnected(CoreLayer):
+class FullyConnectedHighway(CoreLayer):
 
     '''
-        Initializes the fully connected layer
+        Constructs the Fully Connected Highway Layer.
 
         incoming: Tensor. Incoming (2+)D Tensor.
         n_units: int, number of units for this layer.
-        activation: str (name) or function (returning a Tensor). Activation
-                    applied to this layer (see tflearn.activations).
+        activation: str (name) or function (returning a Tensor).
                     Default: 'linear'.
-        bias: bool. If True, a bias is used.
+        transform_dropout: float: Keep probability on the highway transform gate.
         weights_init: str (name) or Tensor. Weights initialization.
                       Default: 'truncated_normal'.
         bias_init: str (name) or Tensor. Bias initialization. Default: 'zeros'.
         regularizer: str (name) or Tensor. Add a regularizer to this layer
-                     weights. Default: None.
+                     weights (see tflearn.regularizers). Default: None.
         weight_decay: float. Regularizer decay parameter. Default: 0.001.
         trainable: bool. If True, weights will be trainable.
         restore: bool. If True, this layer weights will be restored when
-                 loading a model.
+                 loading a model
         reuse: bool. If True and 'scope' is provided, this layer variables
                      will be reused (shared).
         scope: str. Define this layer scope (optional). A scope can be used to
-               share variables between layers. Note that scope will override
-               name.
-        name: A name for this layer (optional). Default: 'FullyConnected'.
+               share variables between layers. Note that scope will override name.
+        name: A name for this layer (optional). Default: 'FullyConnectedHighway'.
     '''
+
     def __init__(self,
                  incoming,
                  n_units,
                  activation='linear',
-                 bias=True,
+                 transform_dropout=None,
                  weights_init='truncated_normal',
                  bias_init='zeros',
                  regularizer=None,
@@ -42,16 +43,16 @@ class FullyConnected(CoreLayer):
                  restore=True,
                  reuse=False,
                  scope=None,
-                 name='FullyConnected'):
+                 name='FullyConnectedHighway'):
 
         # Invoke the super class constructor
-        super(FullyConnected, self).__init__()
+        super(FullyConnectedHighway, self).__init__()
 
-        # Save off the incoming paramters
+        # Save off incoming parameters
         self.incoming = incoming
         self.n_units = n_units
         self.activation = activation
-        self.bias = bias
+        self.transform_dropout = transform_dropout
         self.weights_init = weights_init
         self.bias_init = bias_init
         self.regularizer = regularizer
@@ -62,10 +63,10 @@ class FullyConnected(CoreLayer):
         self.scope = scope
         self.name = name
 
-        self.initialize_fullyconnected_layer()
+        self.initialize_fullyconnectedhighway_layer()
 
     '''
-        Initializes the fully-connected layer
+        Initializes the fully connected highway layer
 
         Args:
             None
@@ -73,18 +74,18 @@ class FullyConnected(CoreLayer):
         Returns:
             Nothing
     '''
-    def initialize_fullyconnected_layer(self):
-        from tflearn.layers.core import fully_connected
-        self.layer = fully_connected(self.incoming,
-                                     self.n_units,
-                                     self.activation,
-                                     self.bias,
-                                     self.weights_init,
-                                     self.bias_init,
-                                     self.regularizer,
-                                     self.weight_decay,
-                                     self.trainable,
-                                     self.restore,
-                                     self.reuse,
-                                     self.scope,
-                                     self.name)
+    def initialize_fullyconnectedhighway_layer(self):
+        from tflearn.layers.core import highway
+        self.layer = highway(self.incoming,
+                             self.n_units,
+                             self.activation,
+                             self.transform_dropout,
+                             self.weights_init,
+                             self.bias_init,
+                             self.regularizer,
+                             self.weight_decay,
+                             self.trainable,
+                             self.restore,
+                             self.reuse,
+                             self.scope,
+                             self.name)

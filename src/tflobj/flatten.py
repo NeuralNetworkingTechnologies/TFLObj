@@ -1,4 +1,6 @@
 
+from .core import CoreLayer
+
 '''
     Flatten the incoming Tensor.
 '''

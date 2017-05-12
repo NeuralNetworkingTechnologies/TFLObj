@@ -1,4 +1,6 @@
 
+from .core import CoreLayer
+
 '''
     A layer that reshape the incoming layer tensor output to the desired shape.
 '''

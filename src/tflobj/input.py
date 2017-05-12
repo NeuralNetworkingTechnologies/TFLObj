@@ -1,4 +1,6 @@
 
+from .core import CoreLayer
+
 '''
     This layer is used for inputting (aka. feeding) data to a network. A
     TensorFlow placeholder will be used if it is supplied, otherwise a new

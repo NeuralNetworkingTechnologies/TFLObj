@@ -1,4 +1,6 @@
 
+from .core import CoreLayer
+
 '''
     Outputs the input element scaled up by 1 / keep_prob. The scaling is so that
     the expected sum is unchanged.

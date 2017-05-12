@@ -1,4 +1,6 @@
 
+from .core import CoreLayer
+
 '''
     A custom layer that can apply any operations to the incoming Tensor or list
     of Tensor. The custom function can be pass as a parameter along with its

@@ -1,4 +1,6 @@
 
+from .core import CoreLayer
+
 '''
     Apply given activation to incoming tensor.
 '''
